@@ -1,0 +1,37 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .static-scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  static-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Veracode CLI
+        uses: wei/curl@master
+        with:
+          args: -fsS https://tools.veracode.com/veracode-cli/install | sh
+      - name: Auto packaging the application
+        run: ./veracode package --source <string> --output  --trust --debug
+        env:
+          VERACODE_API_KEY_ID: ${{ secrets.myVeracodeId }}
+          VERACODE_API_KEY_SECRET: ${{ secrets.myVeracodeSecret }}
+
+      - name: Veracode Upload and Scan Action Step
+        uses: ./ # Uses an action in the root directory
+        id: upload_and_scan
+        with:
+          appname: '${{ github.repository }}'
+          version: '${{ github.run_id }}'
+          filepath: 'binaries_to_upload/*.jar'
+          vid: '${{ secrets.VERACODE_API_ID }}'
+          vkey: '${{ secrets.VERACODE_API_KEY }}'
+          createsandbox: false
+          sandboxname: 'Github - ${{ github.ref }}'
+          createprofile: false
