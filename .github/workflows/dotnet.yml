@@ -22,6 +22,12 @@ jobs:
           VERACODE_API_KEY_ID: ${{ secrets.VERACODE_ID }}
           VERACODE_API_KEY_SECRET: ${{ secrets.VERACODE_KEY }}
 
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/veracodeuploads
+    
       - name: Veracode Upload and Scan Action Step
         uses: veracode/veracode-uploadandscan-action@0.2.1
         id: upload_and_scan
