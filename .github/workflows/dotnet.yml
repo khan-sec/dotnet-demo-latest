@@ -27,8 +27,8 @@ jobs:
         id: upload_and_scan
         with:
           appname: 'AppSec Test'
-          version: '${{ github.run_id }}/veracodeuploads'
-          filepath: '${{ github.repository }}'
+          version: '${{ github.run_id }}'
+          filepath: '${{ github.repository }}/veracodeuploads'
           vid: '${{ secrets.VERACODE_ID }}'
           vkey: '${{ secrets.VERACODE_KEY }}'
           createsandbox: false
