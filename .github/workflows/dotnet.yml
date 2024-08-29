@@ -18,7 +18,7 @@ jobs:
         with:
           args: -fsS https://tools.veracode.com/veracode-cli/install | sh
       - name: Auto packaging the application
-        run: ./veracode package --source app --output ${{ github.repository }} --trust --debug
+        run: ./veracode package --source khan-sec/dotnet-demo-latest --output ${{ github.repository }} --trust --debug
         env:
           VERACODE_API_KEY_ID: ${{ secrets.VERACODE_ID }}
           VERACODE_API_KEY_SECRET: ${{ secrets.VERACODE_KEY }}
