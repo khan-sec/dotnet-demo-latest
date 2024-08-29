@@ -29,8 +29,8 @@ jobs:
           appname: 'AppSec Test'
           version: '${{ github.run_id }}'
           filepath: '${{ github.workspace }}/veracodeuploads'
-          vid: '${{ secrets.VERACODE_ID }}'
-          vkey: '${{ secrets.VERACODE_KEY }}'
+          vid: ${{ secrets.VERACODE_ID }}
+          vkey: ${{ secrets.VERACODE_KEY }}
           createsandbox: false
           sandboxname: 'Asit test'
           createprofile: false
