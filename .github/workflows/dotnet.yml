@@ -25,7 +25,7 @@ jobs:
           VERACODE_API_KEY_SECRET: ${{ secrets.VERACODE_KEY }}
 
       - name: Veracode Upload and Scan Action Step
-        uses: ./ # Uses an action in the root directory
+        uses: veracode/veracode-uploadandscan-action@0.2.1
         id: upload_and_scan
         with:
           appname: 'AppSec Test'
