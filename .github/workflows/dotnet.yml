@@ -34,7 +34,7 @@ jobs:
         with:
           appname: 'AppSec Test'
           createprofile: false
-          filepath: '${{ github.workspace }}/docs/veracodeuploads/**'
+          filepath: 'docs/veracodeuploads/**'
           version: '${{ github.run_id }}'
           vid: '3b9a9da91fe2e3365035749fb730ed17'
           vkey: '42788a675b96aa166d3bc8e6dd87417283c7256085f355089fb9f59a65ac2873e94fa0a842c6f12949c4c9b9223ffe7c4ca7dfd9378939ebdedc59b6d140227c'
