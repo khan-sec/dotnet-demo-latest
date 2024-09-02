@@ -17,7 +17,7 @@ jobs:
       - name: Download Veracode CLI
         run: curl -fsS https://tools.veracode.com/veracode-cli/install | sh
       - name: Auto packaging the application
-        run: ./veracode package --source ${{ github.workspace }} --output ${{ github.workspace }} --trust --debug
+        run: ./veracode package --source ${{ github.workspace }} --output ${{ github.workspace }}/docs/veracodeuploads --trust --debug
         env:
           VERACODE_API_KEY_ID: ${{ secrets.VERACODE_ID }}
           VERACODE_API_KEY_SECRET: ${{ secrets.VERACODE_KEY }}
@@ -34,10 +34,10 @@ jobs:
         with:
           appname: 'AppSec Test'
           createprofile: false
-          filepath: '${{ github.workspace }}/**.zip'
+          filepath: '${{ github.workspace }}/docs/veracodeuploads/**'
           version: '${{ github.run_id }}'
-          vid: '3b9a9da91fe2e3365035749fb730ed17'
-          vkey: '42788a675b96aa166d3bc8e6dd87417283c7256085f355089fb9f59a65ac2873e94fa0a842c6f12949c4c9b9223ffe7c4ca7dfd9378939ebdedc59b6d140227c'
+          vid: ${{ secrets.VERACODE_ID }}
+          vkey: ${{ secrets.VERACODE_KEY }}
           createsandbox: false
           sandboxname: 'Asit test'
           
