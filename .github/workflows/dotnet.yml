@@ -36,8 +36,8 @@ jobs:
           createprofile: false
           filepath: '${{ github.workspace }}/docs/veracodeuploads/**'
           version: '${{ github.run_id }}'
-          vid: ${{ secrets.VERACODE_ID }}
-          vkey: ${{ secrets.VERACODE_KEY }}
+          vid: ${{ secrets.VERACODE_ID-Veracode_ID }}
+          vkey: ${{ secrets.VERACODE_KEY-Veracode_ID }}
           createsandbox: false
           sandboxname: 'Asit test'
           
