@@ -14,6 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+         dotnet-version: '8.0'
+
+     # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+
+      # Build the application
+      - name: Build the application
+        run: dotnet build --configuration debug
+      
       - name: Create temporary folder
         run: mkdir -p uploads
       - name: Download Veracode CLI
@@ -33,16 +47,14 @@ jobs:
           
       - name: Auto packaging the JavaScript application
         run: ./veracode package --source Javascript-demo-API --output uploads --trust --debug
-        env:
-          VERACODE_API_KEY_ID: ${{ secrets.VERACODE_ID }}
-          VERACODE_API_KEY_SECRET: ${{ secrets.VERACODE_KEY }}  
+          
 
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
         with:
           name: my-artifact
-          path: ${{ github.workspace }}
+          path: uploads
     
       - name: Veracode Upload and Scan Action Step
         uses: veracode/veracode-uploadandscan-action@0.2.1
