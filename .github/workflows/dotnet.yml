@@ -23,9 +23,9 @@ jobs:
          dotnet-version: '8.0'
          
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore app/app.csproj
       - name: Build the application
-        run: dotnet build --configuration debug --no-restore
+        run: dotnet build app/app.csproj --configuration debug --no-restore
         
       - name: Create temporary folder
         run: mkdir -p uploads
